@@ -1,0 +1,59 @@
+#include <iostream>;
+using namespace std;
+
+void mod() {
+	int a, b;
+	cout << "Введите два числа\n";
+	cin >> a >> b;
+	if (a < 0) {
+		a *= (-1);
+	}
+	if (b < 0) {
+		b *= (-1);
+	}
+	if (((a == 0) || (b == 0)) && (a != b)) {
+		cout << "Не существует\n";
+		exit(0);
+	}
+	while ((a != 0) && (b != 0)) {
+		if (a > b) {
+			a = a % b;
+		}
+		else {
+			b = b % a;
+		}
+	}
+	cout << a + b;
+}
+
+void sub() {
+	int a, b;
+	cout << "Введите два числа\n";
+	cin >> a >> b;
+	if (a < 0) {
+		a *= (-1);
+	}
+	if (b < 0) {
+		b *= (-1);
+	}
+	if (((a == 0) || (b == 0)) && (a != b)) {
+		cout << "Не существует\n";
+		exit(0);
+	}
+	while (a != b) {
+		if (a > b) {
+			a -= b;
+		}
+		else {
+			b -= a;
+		}
+	}
+	cout << a;
+}
+
+
+int main() {
+	setlocale(0, "");
+	//mod();
+	sub();
+}
