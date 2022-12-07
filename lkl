@@ -4,11 +4,11 @@
 #include <string>
 using namespace std;
 
-void textFile1(){
+void textFile1() {
 	setlocale(0, "");
 	char let, A, B, LET, Llet;
 	string text;
-	string BigLet= "AEIOUY";
+	string BigLet = "AEIOUY";
 	string SmallLet = "aeiouy";
 	bool Big = false, Small = false;
 	int min = 10000;
@@ -29,7 +29,7 @@ void textFile1(){
 		text.append(1, ch); // к строке поочередно добавляются считываемые символы файла
 	}
 
-	map <char, int> mp1 = {{'A', 0}, {'E', 0}, {'I', 0}, {'O', 0}, {'U', 0}, {'Y', 0} };
+	map <char, int> mp1 = { {'A', 0}, {'E', 0}, {'I', 0}, {'O', 0}, {'U', 0}, {'Y', 0} };
 	map <char, int> mp2 = { {'a', 0}, {'e', 0}, {'i', 0}, {'o', 0}, {'u', 0}, {'y', 0} };
 
 	for (int i = 0; i <= text.size(); i++) { //задаются символы подаваемой строки и флаги
@@ -53,7 +53,7 @@ void textFile1(){
 		else {
 			continue;
 		}
-		
+
 	}
 	for (int i = 0; i <= BigLet.size() - 1; i++) { //перебор по строке гласных верхнего регистра
 		A = BigLet[i];  // по i-му порядку берутся символы верхнего
@@ -64,7 +64,7 @@ void textFile1(){
 		let = BigLet[i];
 		cout << mp1[let] << " "; } */
 
-	//проверка правильности итогового словаря
+		//проверка правильности итогового словаря
 	for (int i = 0; i <= BigLet.size() - 1; i++) { //проходясь по итоговому (первому) сложенному словарю находим гласную с наименьшим подсчитанным кол-вом
 		if (min > mp1[BigLet[i]]) {
 			min = mp1[BigLet[i]];
@@ -79,7 +79,7 @@ void textFile2() {
 
 	string text, str;
 	int count = 0, n;
-	
+
 
 	ofstream fout("Lorem Ipsum.txt"); //создан файл;
 	fout << "тут должен быть Lorem Ipsum";
@@ -123,8 +123,10 @@ void textFile2() {
 
 void ranks() {
 
-	int n, element, count = 0, e, k;
-	string str;
+	int n, element, count = 0, e, curr = 0, summ = 0, num, CURR;
+	string str, five = " ";
+	string strCURR;
+
 
 	cout << "Введите число n - количество элементов массива\n";
 	cin >> n;
@@ -137,7 +139,7 @@ void ranks() {
 			str = to_string(element);
 			count = 0;
 			for (int j = 0; j <= str.size() - 1; j++) {
-				if ((str[j] == '0')||(str[j] == '1')){
+				if ((str[j] == '0') || (str[j] == '1')) {
 					count += 1;
 				}
 				else {
@@ -152,10 +154,35 @@ void ranks() {
 		arr[i] = element;
 	}
 
-	int* arr2 = new int[n];
+	string* arr2 = new string[n];
 	for (int i = 0; i < n; i++) {
-		for (int j = 0; j <= )
+		summ = 0;
+		curr = 0;
+		five = " ";
+		num = arr[i];
+		while (num > 0) {
+			e = num % 10;
+			if (e == 1) {
+				summ += e * pow(2, curr); //получили перевод в десятичную систему
+			}
+			curr += 1;
+			num = num / 10;
+		}
+		while (summ > 0) {
+			CURR = summ % 5;
+			strCURR = to_string(CURR);
+			five = strCURR + five;
+			summ /= 5;
+		}
+		arr2[i] = five; //добавлен элемент в пятеричной системе
 	}
+	for (int i = 0; i < n; i++) {
+		cout << arr2[i] << " ";
+	}
+} 
+
+void array() {
+
 }
 
 void a() {
@@ -167,6 +194,6 @@ void a() {
 int main() {
 	setlocale(0, "");
 	//textFile2();
-	//ranks();
-	a();
+	ranks();
+	//a();
 }
