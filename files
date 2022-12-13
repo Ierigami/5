@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	setlocale(0, "");
+
+	ofstream fout("Олимпийские игры");
+
+	string countries[10] = { "Австрия", "Герм", "Канада", "Китай", "Корея", "Норвег", "Россия", "США", "Финл", "Япония" };
+	int gold_medals[10], silver_madals[10], bronze_medal[10];
+
+	cout << "Итоги олимпийских игр"<< endl;
+	cout << "Введите в одной строке количество золотых, серебряных и бронзовых медалей"<< endl;
+	for (int i = 0; i < 10; i++) {
+		cout << countries[i] << ": ";
+		cin  >>  gold_medals[i]; //cout « '\t';
+		cin >> silver_madals[i]; //cout « '\t';
+		cin >> bronze_medal[i]; cout << endl;
+	}
+
+	int points[10];
+	for (int i = 0; i < 10; i++) {
+		points[i] = gold_medals[i] * 7 + silver_madals[i] * 6 + bronze_medal[i] * 5;
+	}
+
+	/*for (int i = 0; i < 10; i++)
+	cout « points[i] « '\t';*/
+
+	for (int i = 0; i < 10 - 1; i++)
+		for (int j = i + 1; j < 10; j++)
+			if (points[j] > points[i])
+			{
+				int p = points[j];
+				points[j] = points[i];
+				points[i] = p;
+
+				string c = countries[j];
+				countries[j] = countries[i];
+				countries[i] = c;
+
+				int g = gold_medals[j];
+				gold_medals[j] = gold_medals[i];
+				gold_medals[i] = g;
+
+				int s = silver_madals[j];
+				silver_madals[j] = silver_madals[i];
+				silver_madals[i] = s;
+
+				int b = bronze_medal[j];
+				bronze_medal[j] = bronze_medal[i];
+				bronze_medal[i] = b;
+
+			}
+
+	fout << "        Страна " << "Золото " << "Серебро " << " Бронза " << "Всего " << " Очков  " << endl;
+
+	for (int i = 0; i < 10; i++) {
+		fout << i + 1 << '\t' << countries[i] << '\t' << gold_medals[i] << '\t' << silver_madals[i] << '\t' << bronze_medal[i] << '\t';
+		fout << gold_medals[i] + silver_madals[i] + bronze_medal[i] << '\t' << points[i] << endl;
+	}
+}
